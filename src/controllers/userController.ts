@@ -14,7 +14,7 @@ const idSchema = z.number().int().positive("O ID deve ser um número positivo");
 export function inserirUsuarioController(usuarioData: unknown) {
     try {
         const usuario: Usuario = usuarioSchema.parse(usuarioData);
-        inserirUsuarioService(usuario.nome, usuario.senha, usuario.email);
+        inserirUsuarioService(usuario.nome, usuario.email, usuario.senha);
     } catch (error: any) {
         console.error("Validação de usuário falhou:", error.errors || error);
     }
