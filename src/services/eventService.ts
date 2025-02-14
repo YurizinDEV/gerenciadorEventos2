@@ -1,4 +1,4 @@
-import { db } from "../database/db";
+import { db } from "./db";
 import { Evento } from "../models/eventModel";
 import { registrarLogService } from "./logService";
 

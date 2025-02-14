@@ -1,4 +1,4 @@
-import { criarTabelas } from "./database/createTable";
+import { criarTabelas } from "./seeds/createTable";
 import { 
     inserirUsuarioController,
     listarTodosUsuariosController,
@@ -13,7 +13,7 @@ import {
 } from "./controllers/eventController";
 import { listarLogsService} from "./services/logService";
 
-
+/*
 // Cria as tabelas: usuários, eventos e logs
 criarTabelas();
 
@@ -44,4 +44,8 @@ listarEventoPorIdController(1);
 deletarEventoController({ id: 1, usuario_id: 1 });
 
 
-listarLogsService();
+listarLogsService();*/
+
+
+import { startCLI } from "./cli/cli";
+startCLI();

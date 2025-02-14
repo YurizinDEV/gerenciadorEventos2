@@ -1,4 +1,4 @@
-import { db } from "../database/db";
+import { db } from "./db";
 
 export function registrarLogService(acao: string, tabela: string, usuario_id: number) {
     const query = `INSERT INTO logs (acao, tabela, usuario_id, data) VALUES (?, ?, ?, datetime('now'))`;

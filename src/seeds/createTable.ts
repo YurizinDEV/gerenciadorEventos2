@@ -1,4 +1,4 @@
-import { db } from "../database/db";
+import { db } from "../services/db";
 
 // Cria tabela de usuários
 export function criarTabelaUsuarios() {

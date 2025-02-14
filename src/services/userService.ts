@@ -1,5 +1,5 @@
 
-import { db } from "../database/db";
+import { db } from "./db";
 import { Usuario } from "../models/userModel";
 
 export function inserirUsuarioService(nome: string, email: string, senha: string) {
