@@ -19,7 +19,7 @@ export function inserirUsuarioService(nome: string, email: string, senha: string
     });
 }
 
-export function listarTodosUsuariosService() {
+export function listarTodosUsuariosService():any {
     const query = `SELECT * FROM usuarios`;
     db.all(query, (erro, linhas: Usuario[]) => {
         if (erro) console.error(`Erro ao listar usuários: ${erro}`);
