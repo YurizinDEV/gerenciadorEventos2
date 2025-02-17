@@ -47,7 +47,7 @@ deletarEventoController({ id: 1, usuario_id: 1 });
 listarLogsService();*/
 
 
-import { startCLI } from "./cli/cli";
+import { startCLI } from "./cli/loginCli";
 startCLI();
 
 criarTabelas();
