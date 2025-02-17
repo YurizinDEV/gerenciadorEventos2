@@ -11,7 +11,7 @@ import { Usuario } from "../models/userModel";
 
 // Função principal para iniciar a CLI
 export async function startCLI() {
-    console.log("Bem-vindo(a) à CLI de Gerenciamento!\n");
+    console.log("Bem-vindo(a) à CLI de Gerenciamento de Eventos e Usuários!\n");
     await loginFlow();
 }
 
@@ -35,7 +35,7 @@ async function loginFlow() {
     db.get(
         "SELECT * FROM usuarios WHERE email = ? AND senha = ?",
         [email, senha],
-        async (err:Error, row:Usuario ) => {
+        async (err: Error, row: Usuario) => {
             if (err) {
                 console.error("Erro ao verificar usuário:", err);
                 return;
@@ -45,8 +45,13 @@ async function loginFlow() {
                 await loginFlow(); // Retorna ao fluxo de login
             } else {
                 console.log(`\nLogin realizado com sucesso! Bem-vindo, ${row.nome}.\n`);
-                // Após login bem-sucedido, exibe o menu principal
-                mainMenu(row.id);
+
+                // Verifica se row.id não é undefined antes de chamar mainMenu (Tratamento realizado apenas para resolver erro de id não ser obrigatório na model mas é autoincrement no banco de dados) 
+                if (row.id !== undefined) {
+                    mainMenu(row.id);
+                } else {
+                    console.error("Erro: ID do usuário não encontrado.");
+                }
             }
         }
     );

@@ -2,6 +2,15 @@ import { db } from "./db";
 import { Evento } from "../models/eventModel";
 import { registrarLogService } from "./logService";
 
+// Cria tabela de usuários
+export function criarTabelaUsuarios() {
+    const query = `CREATE TABLE IF NOT EXISTS usuarios ( id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, senha TEXT )`;
+    db.run(query, (erro) => {
+        if (erro) console.error("Erro ao criar tabela usuarios:", erro);
+        else console.log("Tabela usuarios criada com sucesso!");
+    });
+}
+
 export function adicionarEventoService(nome: string, data: string, usuario_id: number) {
     const query = `INSERT INTO eventos (nome, data, usuario_id) VALUES (?, ?, ?)`;
     db.run(query, [nome, data, usuario_id], function (erro) {

@@ -49,3 +49,7 @@ listarLogsService();*/
 
 import { startCLI } from "./cli/cli";
 startCLI();
+
+criarTabelas();
+
+//inserirUsuarioController({ nome: "admin", email: "admin@example.com", senha: "admin123" });
