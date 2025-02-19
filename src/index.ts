@@ -1,4 +1,3 @@
-import { criarTabelas } from "./seeds/createTable";
 import { 
     inserirUsuarioController,
     listarTodosUsuariosController,
@@ -11,7 +10,6 @@ import {
     listarEventoPorIdController,
     deletarEventoController
 } from "./controllers/eventController";
-import { listarLogsService} from "./services/logService";
 
 /*
 // Cria as tabelas: usuários, eventos e logs
@@ -47,9 +45,23 @@ deletarEventoController({ id: 1, usuario_id: 1 });
 listarLogsService();*/
 
 
-import { startCLI } from "./cli/loginCli";
-startCLI();
+//import { startCLI } from "./cli/loginCli";
+//startCLI();
 
-criarTabelas();
 
 //inserirUsuarioController({ nome: "admin", email: "admin@example.com", senha: "admin123" });
+
+// main.ts  
+import { criarTabelaUsuarios } from './services/userService';  
+import { criarTabelaEventos } from './services/eventService';  
+import { loginFlow } from './cli/loginCli';  
+
+async function main() {  
+    await criarTabelaUsuarios();  
+    await criarTabelaEventos();  
+    await loginFlow();  
+}  
+
+main().catch(err => {  
+    console.error(err);  
+});

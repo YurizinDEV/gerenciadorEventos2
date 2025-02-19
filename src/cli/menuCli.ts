@@ -1,10 +1,8 @@
 import inquirer from "inquirer";
-import { listarLogsController } from "../controllers/logController";
-import { menuUsuarios } from "./userCli";
-import { menuEventos } from "./eventCli";
-
+import { gerenciarEventos } from "./eventCli";
+import { gerenciarUsuarios } from "./userCli";
 //Menu principal após login
-export async function mainMenu(usuarioId: number) {
+/*export async function mainMenu(usuarioId: number) {
     const { opcao } = await inquirer.prompt([
         {
             name: "opcao",
@@ -36,4 +34,35 @@ export async function mainMenu(usuarioId: number) {
 
     // Retorna ao menu principal após uma ação
     await mainMenu(usuarioId);
-}
+}*/
+
+
+// cli/menuCli.ts  
+
+
+export async function menuPrincipal(userId: number) {  
+    const { action } = await inquirer.prompt([  
+        {  
+            type: 'list',  
+            name: 'action',  
+            message: 'Escolha uma ação:',  
+            choices: [  
+                'Gerenciar Usuários',  
+                'Gerenciar Eventos',  
+                'Sair'  
+            ],  
+        },  
+    ]);  
+
+    switch (action) {  
+        case 'Gerenciar Usuários':  
+            await gerenciarUsuarios(userId);  
+            break;  
+        case 'Gerenciar Eventos':  
+            await gerenciarEventos(userId);  
+            break;  
+        case 'Sair':  
+            console.log('Saindo...');  
+            process.exit();  
+    }  
+}  
