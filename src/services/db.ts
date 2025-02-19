@@ -1,9 +1,6 @@
 import sqlite3 from "sqlite3";
-import {
-    criarTabelaUsuarios,
-    criarTabelaEventos,
-    criarTabelaLogs
-} from "../seeds/createTable";
+import {criarTabelaUsuarios} from "./userService";
+import {criarTabelaEventos} from "./eventService";
 
 export const db = new sqlite3.Database("./data/eventos.db");
 
@@ -11,5 +8,4 @@ export const db = new sqlite3.Database("./data/eventos.db");
 export function criarTabelas() {
     criarTabelaUsuarios();
     criarTabelaEventos();
-    criarTabelaLogs();
 }

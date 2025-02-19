@@ -2,12 +2,12 @@
 import { db } from "./db";
 import { Usuario } from "../models/userModel";
 
-// Cria tabela de eventos
-export function criarTabelaEventos() {
-    const query = `CREATE TABLE IF NOT EXISTS eventos ( id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, data TEXT, usuario_id INTEGER, FOREIGN KEY (usuario_id) REFERENCES usuarios(id) )`;
+// Cria tabela de usuários
+export function criarTabelaUsuarios() {
+    const query = `CREATE TABLE IF NOT EXISTS usuarios ( id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, senha TEXT )`;
     db.run(query, (erro) => {
-        if (erro) console.error("Erro ao criar tabela eventos:", erro);
-        else console.log("Tabela eventos criada com sucesso!");
+        if (erro) console.error("Erro ao criar tabela usuarios:", erro);
+        else console.log("Tabela usuarios criada com sucesso!");
     });
 }
 

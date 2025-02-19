@@ -8,11 +8,12 @@ import { eventoSchema, idSchema, deletarEventoSchema } from "../validations/even
 
 export function adicionarEventoController(eventoData: unknown) {
     try {
-        const { nome, data, usuario_id } = eventoSchema.parse(eventoData);
+        const { nome, data: dataString, usuario_id } = eventoSchema.parse(eventoData);
+        const data: Date = new Date(dataString); 
         return adicionarEventoService(nome, data, usuario_id);
     } catch (error: any) {
         console.error("Validação do evento falhou:", error.errors || error);
-        throw error; // Lança o erro para ser tratado em outro lugar, se necessário  
+        throw error; 
     }
 }
 
@@ -26,7 +27,7 @@ export function listarEventoPorIdController(idData: unknown) {
         return listarEventoPorIdService(id);
     } catch (error: any) {
         console.error("Validação do ID falhou:", error.errors || error);
-        throw error; // Lança o erro para ser tratado em outro lugar, se necessário  
+        throw error;
     }
 }
 
@@ -36,6 +37,6 @@ export function deletarEventoController(data: unknown) {
         return deletarEventoService(id, usuario_id);
     } catch (error: any) {
         console.error("Validação dos dados para deletar evento falhou:", error.errors || error);
-        throw error; // Lança o erro para ser tratado em outro lugar, se necessário  
+        throw error; 
     }
 }

@@ -10,10 +10,10 @@ async function seedUsers() {
             nome: faker.name.fullName(),  
             email: faker.internet.email(),  
             senha: faker.internet.password({  
-                length: 10, // Senha com pelo menos 10 caracteres  
+                length: 10, 
                 memorable: false,  
                 pattern: /[A-Za-z0-9!@#$%^&*(),.?":{}|<>]/,  
-                prefix: 'A1@' // Prefixo para a senha  
+                prefix: 'A1@'
             }),  
         };  
 
