@@ -1,3 +1,5 @@
+//eventsSeeds
+
 import { faker } from '@faker-js/faker';
 import { Evento } from '../models/eventModel';
 import { adicionarEventoService } from '../services/eventService';

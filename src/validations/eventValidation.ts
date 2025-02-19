@@ -1,3 +1,5 @@
+//eventValidation
+
 import { z } from "zod";
 
 export const eventoSchema = z.object({

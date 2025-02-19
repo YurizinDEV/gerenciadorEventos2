@@ -1,3 +1,5 @@
+//dbService
+
 import sqlite3 from "sqlite3";
 import {criarTabelaUsuarios} from "./userService";
 import {criarTabelaEventos} from "./eventService";

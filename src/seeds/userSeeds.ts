@@ -1,3 +1,5 @@
+//userSeeds
+
 import { faker } from '@faker-js/faker';
 import { Usuario } from '../models/userModel'; 
 import { inserirUsuarioService } from '../services/userService'; 

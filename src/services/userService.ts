@@ -1,5 +1,6 @@
+//userService
 
-import { db } from "./db";
+import { db } from "./dbService";
 import { Usuario } from "../models/userModel";
 
 // Cria tabela de usuários

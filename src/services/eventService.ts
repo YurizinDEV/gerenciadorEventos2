@@ -1,6 +1,7 @@
-import { db } from "./db";
+//eventService
+
+import { db } from "./dbService";
 import { Evento } from "../models/eventModel";
-import { registrarLogService } from "./logService";
 
 
 // Cria tabela de eventos
@@ -18,7 +19,6 @@ export function adicionarEventoService(nome: string, data: Date, usuario_id: num
         if (erro) console.error(`Erro ao adicionar evento: ${erro}`); //
         else {
             console.log(`Evento ${this.lastID} adicionado com sucesso!`);
-            registrarLogService("inserir", "eventos", usuario_id);
         }
     });
 }
@@ -46,7 +46,6 @@ export function deletarEventoService(id: number, usuario_id: number) {
         if (erro) console.error(`Erro ao deletar evento: ${erro}`);
         else {
             console.log(`Evento com id ${id} deletado com sucesso!`);
-            registrarLogService("deletar", "eventos", usuario_id);
         }
     });
 }

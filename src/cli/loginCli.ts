@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { db } from "../services/db";
+import { db } from "../services/dbService";
 import { Usuario } from "../models/userModel";
 import { mainMenu } from "./menuCli";
 
