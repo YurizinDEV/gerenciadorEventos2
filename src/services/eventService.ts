@@ -11,7 +11,7 @@ export function criarTabelaUsuarios() {
     });
 }
 
-export function adicionarEventoService(nome: string, data: string, usuario_id: number) {
+export function adicionarEventoService(nome: string, data: Date, usuario_id: number) {
     const query = `INSERT INTO eventos (nome, data, usuario_id) VALUES (?, ?, ?)`;
     db.run(query, [nome, data, usuario_id], function (erro) {
         if (erro) console.error(`Erro ao adicionar evento: ${erro}`); //
