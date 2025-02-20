@@ -4,11 +4,10 @@ import { faker } from '@faker-js/faker';
 import { Evento } from '../models/eventModel';
 import { adicionarEventoService } from '../services/eventService';
 import { listarTodosUsuariosService } from '../services/userService';
-import { number } from 'zod';
 
 const NUM_EVENTS = 10;
 
-async function seedEvents() {  
+export async function seedEvents() {  
     try {  
         const users = await listarTodosUsuariosService();  
 

@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import { gerenciarEventos } from "./eventCli";
 import { gerenciarUsuarios } from "./userCli";
+import { menuSeeds } from "./seedsCli";
 //Menu principal após login
 /*export async function mainMenu(usuarioId: number) {
     const { opcao } = await inquirer.prompt([
@@ -49,6 +50,7 @@ export async function menuPrincipal(userId: number) {
             choices: [  
                 'Gerenciar Usuários',  
                 'Gerenciar Eventos',  
+                'Gerar Seeds', // Nova opção para gerar seeds  
                 'Sair'  
             ],  
         },  
@@ -61,8 +63,11 @@ export async function menuPrincipal(userId: number) {
         case 'Gerenciar Eventos':  
             await gerenciarEventos(userId);  
             break;  
+        case 'Gerar Seeds': // Opção para gerar seeds  
+            await menuSeeds(userId); // Chama o menu de seeds  
+            break;  
         case 'Sair':  
             console.log('Saindo...');  
             process.exit();  
     }  
-}  
+} 

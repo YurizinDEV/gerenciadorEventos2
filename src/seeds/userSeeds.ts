@@ -6,7 +6,7 @@ import { inserirUsuarioService } from '../services/userService';
 
 const NUM_USERS = 10;  
 
-async function seedUsers() {  
+export async function seedUsers() {  
     for (let i = 0; i < NUM_USERS; i++) {  
         const usuario: Usuario = {  
             nome: faker.name.fullName(),  
@@ -23,7 +23,3 @@ async function seedUsers() {
         console.log(`Usuário criado: ${usuario.nome} - ${usuario.email}`);  
     }  
 }  
-
-seedUsers()  
-    .then(() => console.log('Seeds de usuários concluídas.'))  
-    .catch((error) => console.error('Erro ao criar seeds de usuários:', error));  
