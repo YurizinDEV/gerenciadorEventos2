@@ -18,9 +18,9 @@ export function criarTabelaEventos() {
 export function adicionarEventoService(nome: string, data: Date, usuario_id: number) {
     const query = `INSERT INTO eventos (nome, data, usuario_id) VALUES (?, ?, ?)`;
     db.run(query, [nome, data, usuario_id], function (erro) {
-        if (erro) console.error(`Erro ao adicionar evento: ${erro}`); //
+        if (erro) console.error(`\nErro ao adicionar evento: ${erro}`); //
         else {
-            console.log(`Evento ${this.lastID} adicionado com sucesso!`);
+            console.log(`\nEvento ${this.lastID} adicionado com sucesso!`);
         }
     });
 }
@@ -30,7 +30,7 @@ export function listarTodosEventosService() {
     return new Promise((resolve, reject) => {
         db.all(query, (erro, linhas: Evento[]) => {
             if (erro) {
-                console.error(`Erro ao listar eventos: ${erro}`);
+                console.error(`\nErro ao listar eventos: ${erro}`);
                 reject(erro);
             } else {
                 const eventosFormatados = linhas.map(evento => ({
@@ -48,12 +48,12 @@ export function listarEventoPorIdService(id: number) {
     return new Promise((resolve, reject) => {
         db.get(query, [id], (erro, linha: Evento) => {
             if (erro) {
-                console.error(`Erro ao buscar evento: ${erro}`);
+                console.error(`\nErro ao buscar evento: ${erro}`);
                 reject(erro);
             } else if (linha) {
                 console.log(linha);
             } else {
-                console.log(`Nenhum evento encontrado com o id ${id}`);
+                console.log(`\nNenhum evento encontrado com o id ${id}`);
                 resolve(null); // Retorna null se não encontrar  
             }
         });
@@ -63,9 +63,9 @@ export function listarEventoPorIdService(id: number) {
 export function deletarEventoService(id: number) {
     const query = `DELETE FROM eventos WHERE id = ?`;
     db.run(query, [id], function (erro) {
-        if (erro) console.error(`Erro ao deletar evento: ${erro}`);
+        if (erro) console.error(`\nErro ao deletar evento: ${erro}`);
         else {
-            console.log(`Evento com id ${id} deletado com sucesso!`);
+            console.log(`\nEvento com id ${id} deletado com sucesso!\n`);
         }
     });
 }

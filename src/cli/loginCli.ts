@@ -106,7 +106,11 @@ export function getCurrentUser() {
 
 
 
-
+// Função principal para iniciar a CLI
+export async function startCLI() {
+    console.log("\nBem-vindo(a) à CLI de Gerenciamento de Eventos e Usuários!\n");
+    await loginFlow();
+}
 
 export async function loginFlow() {  
     const { email, senha } = await inquirer.prompt([  

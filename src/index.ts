@@ -1,4 +1,4 @@
-import { 
+import {
     inserirUsuarioController,
     listarTodosUsuariosController,
     listarUsuarioPorIdController,
@@ -52,16 +52,17 @@ listarLogsService();*/
 //inserirUsuarioController({ nome: "admin", email: "admin@example.com", senha: "admin123" });
 
 // main.ts  
-import { criarTabelaUsuarios } from './services/userService';  
-import { criarTabelaEventos } from './services/eventService';  
-import { loginFlow } from './cli/loginCli';  
+import { criarTabelaUsuarios } from './services/userService';
+import { criarTabelaEventos } from './services/eventService';
+import { startCLI } from './cli/loginCli';
 
-async function main() {  
-    await criarTabelaUsuarios();  
-    await criarTabelaEventos();  
-    await loginFlow();  
-}  
+async function main() {
+    criarTabelaUsuarios();
+    criarTabelaEventos();
+    setTimeout(() => {
+        startCLI();},1200);
+}
 
-main().catch(err => {  
-    console.error(err);  
+main().catch(err => {
+    console.error(err);
 });

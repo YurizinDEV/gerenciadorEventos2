@@ -14,7 +14,7 @@ export function adicionarEventoController(eventoData: unknown) {
         return adicionarEventoService(nome, new Date(data.toString()), usuario_id);
     } catch (error: any) {
         console.error("Validação do evento falhou:", error.errors || error);
-        throw error; // Lança o erro para ser tratado em outro lugar, se necessário  
+        throw error;
     }
 }
 
@@ -28,7 +28,7 @@ export function listarEventoPorIdController(idData: unknown) {
         return listarEventoPorIdService(id);
     } catch (error: any) {
         console.error("Validação do ID falhou:", error.errors || error);
-        throw error; // Lança o erro para ser tratado em outro lugar, se necessário  
+        throw error; 
     }
 }
 
