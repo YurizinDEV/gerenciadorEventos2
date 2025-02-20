@@ -15,7 +15,6 @@ export async function seedUsers() {
                 length: 10, 
                 memorable: false,  
                 pattern: /[A-Za-z0-9!@#$%^&*(),.?":{}|<>]/,  
-                prefix: 'A1@'
             }),  
         };  
 

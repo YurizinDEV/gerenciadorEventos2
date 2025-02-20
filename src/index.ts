@@ -60,7 +60,8 @@ async function main() {
     criarTabelaUsuarios();
     criarTabelaEventos();
     setTimeout(() => {
-        startCLI();},1200);
+        startCLI();
+    }, 1200);
 }
 
 main().catch(err => {
