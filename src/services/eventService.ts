@@ -2,6 +2,8 @@
 
 import { db } from "./dbService";
 import { Evento } from "../models/eventModel";
+import { formatarData } from '../utils/dateUtils';
+import { date } from "zod";
 
 
 // Cria tabela de eventos
@@ -25,22 +27,40 @@ export function adicionarEventoService(nome: string, data: Date, usuario_id: num
 
 export function listarTodosEventosService() {
     const query = `SELECT * FROM eventos`;
-    db.all(query, (erro, linhas: Evento[]) => {
-        if (erro) console.error(`Erro ao listar eventos: ${erro}`);
-        else console.log(linhas);
+    return new Promise((resolve, reject) => {
+        db.all(query, (erro, linhas: Evento[]) => {
+            if (erro) {
+                console.error(`Erro ao listar eventos: ${erro}`);
+                reject(erro);
+            } else {
+                const eventosFormatados = linhas.map(evento => ({
+                    ...evento,
+                    data: formatarData(Number(evento.data)),
+                }));
+                resolve(eventosFormatados);
+            }
+        });
     });
 }
 
 export function listarEventoPorIdService(id: number) {
     const query = `SELECT * FROM eventos WHERE id = ?`;
-    db.get(query, [id], (erro, linha: Evento) => {
-        if (erro) console.error(`Erro ao buscar evento: ${erro}`);
-        else if (linha) console.log(linha);
-        else console.log(`Nenhum evento encontrado com o id ${id}`);
+    return new Promise((resolve, reject) => {
+        db.get(query, [id], (erro, linha: Evento) => {
+            if (erro) {
+                console.error(`Erro ao buscar evento: ${erro}`);
+                reject(erro);
+            } else if (linha) {
+                console.log(linha);
+            } else {
+                console.log(`Nenhum evento encontrado com o id ${id}`);
+                resolve(null); // Retorna null se não encontrar  
+            }
+        });
     });
 }
 
-export function deletarEventoService(id: number, usuario_id: number) {
+export function deletarEventoService(id: number) {
     const query = `DELETE FROM eventos WHERE id = ?`;
     db.run(query, [id], function (erro) {
         if (erro) console.error(`Erro ao deletar evento: ${erro}`);

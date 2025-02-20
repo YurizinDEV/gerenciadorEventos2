@@ -15,5 +15,4 @@ export const idSchema = z.number().int().positive({ message: "O ID deve ser um n
 
 export const deletarEventoSchema = z.object({
     id: idSchema,
-    usuario_id: z.number().int().positive({ message: "O ID do usuário deve ser um número positivo." })
 });  
