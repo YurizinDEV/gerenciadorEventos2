@@ -1,6 +1,5 @@
 // cli/userCli
 
-
 import inquirer from "inquirer";
 import { inserirUsuarioController, listarTodosUsuariosController, listarUsuarioPorIdController, deletarUsuarioController, atualizarUsuarioController } from "../controllers/userController";
 import { logUserAction } from "./logCli";

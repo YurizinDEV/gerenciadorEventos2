@@ -5,8 +5,6 @@ import { Evento } from '../models/eventModel';
 import { adicionarEventoService, adicionarVariosEventosService } from '../services/eventService';
 import { listarTodosUsuariosService } from '../services/userService';
 
-
-
 export async function seedEvents() {
     try {
         const NUM_EVENTS = 10;
@@ -21,7 +19,6 @@ export async function seedEvents() {
             for (let i = 0; i < NUM_EVENTS; i++) {
                 const randomUserIndex = faker.number.int({ min: 0, max: users.length - 1 });
                 const userId: number = users[randomUserIndex].id;
-
                 const evento: Evento = {
                     nome: faker.company.catchPhraseAdjective() + ' ' + faker.company.buzzNoun(),
                     data: faker.date.future(),

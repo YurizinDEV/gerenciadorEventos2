@@ -1,3 +1,5 @@
+//index
+
 import { criarTabelaUsuarios } from './services/userService';
 import { criarTabelaEventos } from './services/eventService';
 import { startCLI } from './cli/loginCli';

@@ -26,14 +26,13 @@ export async function  listarTodosUsuariosService():Promise<any> {
         db.all(query, (erro, linhas: Usuario[]) => {  
             if (erro) {  
                 console.error(`\nErro ao listar usuários: ${erro}`);  
-                reject(erro); // Rejeita a Promise em caso de erro  
+                reject(erro); 
             } else {  
                 console.log(linhas);  
-                resolve(linhas); // Resolve a Promise com as linhas retornadas  
+                resolve(linhas); 
             }  
         });  
     });  
-
 }
 
 export function listarUsuarioPorIdService(id: number) {

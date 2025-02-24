@@ -3,8 +3,6 @@
 import { db } from "./dbService";
 import { Evento } from "../models/eventModel";
 import { formatarData } from '../utils/dateUtils';
-import { date } from "zod";
-
 
 // Cria tabela de eventos
 export function criarTabelaEventos() {
@@ -31,7 +29,6 @@ export function adicionarVariosEventosService(eventos: Evento[]) {
         console.log("Nenhum evento para adicionar.");  
         return;  
     }  
-
     // Cria a consulta SQL para inserção múltipla  
     const query = `INSERT INTO eventos (nome, data, usuario_id) VALUES ${eventos.map(() => '(?, ?, ?)').join(', ')}`;  
     
