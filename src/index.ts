@@ -52,6 +52,11 @@ listarLogsService();*/
 //inserirUsuarioController({ nome: "admin", email: "admin@example.com", senha: "admin123" });
 
 // main.ts  
+
+
+//----------------------------------------------------------------
+
+
 import { criarTabelaUsuarios } from './services/userService';
 import { criarTabelaEventos } from './services/eventService';
 import { startCLI } from './cli/loginCli';
@@ -67,3 +72,10 @@ async function main() {
 main().catch(err => {
     console.error(err);
 });
+
+/*console.log('Hello World!');
+
+import { seedEvents } from "./seeds/eventsSeeds";
+
+
+seedEvents();*/

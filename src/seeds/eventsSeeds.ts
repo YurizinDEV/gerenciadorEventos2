@@ -2,34 +2,36 @@
 
 import { faker } from '@faker-js/faker';
 import { Evento } from '../models/eventModel';
-import { adicionarEventoService } from '../services/eventService';
+import { adicionarEventoService, adicionarVariosEventosService } from '../services/eventService';
 import { listarTodosUsuariosService } from '../services/userService';
 
-const NUM_EVENTS = 10;
 
-export async function seedEvents() {  
-    try {  
-        const users = await listarTodosUsuariosService();  
 
-        if (users.length === 0) {  
-            console.log('Nenhum usuário encontrado. Impossível criar eventos.');  
-            return;  
-        }  
+export async function seedEvents() {
+    try {
+        const NUM_EVENTS = 10;
+        const users = await listarTodosUsuariosService() || [];
+        if (!users) {
+            console.log('Nenhum usuário encontrado. Impossível criar eventos.');
+            return;
+        }
+        if (users) {
+            console.log('Iniciando a criação dos usuarios!');
+            let eventos: Evento[] = [];
+            for (let i = 0; i < NUM_EVENTS; i++) {
+                const randomUserIndex = faker.number.int({ min: 0, max: users.length - 1 });
+                const userId: number = users[randomUserIndex].id;
 
-        for (let i = 0; i < NUM_EVENTS; i++) {  
-            const randomUserIndex = faker.number.int({ min: 0, max: users.length - 1 });  
-            const userId: number = users[randomUserIndex].id;
-
-            const evento: Evento = {  
-                nome: faker.company.catchPhraseAdjective() + ' ' + faker.company.buzzNoun(),  
-                data: faker.date.future(), 
-                criadoPor: userId
-            };  
-
-            await adicionarEventoService(evento.nome, evento.data, evento.criadoPor);  
-            console.log(`Evento criado: ${evento.nome} - ${evento.data}`);  
-        }  
-    } catch (error) {  
-        console.log(`Erro ao inserir eventos: ${error}`);  
-    }  
+                const evento: Evento = {
+                    nome: faker.company.catchPhraseAdjective() + ' ' + faker.company.buzzNoun(),
+                    data: faker.date.future(),
+                    criadoPor: userId
+                };
+                eventos.push(evento);
+            }
+            await adicionarVariosEventosService(eventos);
+        }
+    } catch (error) {
+        console.log(`Erro ao inserir eventos: ${error}`);
+    }
 }  

@@ -4,9 +4,10 @@ import { faker } from '@faker-js/faker';
 import { Usuario } from '../models/userModel'; 
 import { inserirUsuarioService } from '../services/userService'; 
 
-const NUM_USERS = 10;  
+
 
 export async function seedUsers() {  
+    const NUM_USERS = 10;  
     for (let i = 0; i < NUM_USERS; i++) {  
         const usuario: Usuario = {  
             nome: faker.name.fullName(),  

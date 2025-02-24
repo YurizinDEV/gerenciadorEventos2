@@ -19,13 +19,21 @@ export function inserirUsuarioService(nome: string, email: string, senha: string
         else console.log(`\nUsuário ${this.lastID} cadastrado com sucesso!`);
     });
 }
-
-export function listarTodosUsuariosService():any {
+export async function  listarTodosUsuariosService():Promise<any> {
     const query = `SELECT * FROM usuarios`;
-    db.all(query, (erro, linhas: Usuario[]) => {
-        if (erro) console.error(`\nErro ao listar usuários: ${erro}`);
-        else console.log(linhas);
-    });
+    return new Promise((resolve, reject) => {  
+        const query = `SELECT * FROM usuarios`;  
+        db.all(query, (erro, linhas: Usuario[]) => {  
+            if (erro) {  
+                console.error(`\nErro ao listar usuários: ${erro}`);  
+                reject(erro); // Rejeita a Promise em caso de erro  
+            } else {  
+                console.log(linhas);  
+                resolve(linhas); // Resolve a Promise com as linhas retornadas  
+            }  
+        });  
+    });  
+
 }
 
 export function listarUsuarioPorIdService(id: number) {

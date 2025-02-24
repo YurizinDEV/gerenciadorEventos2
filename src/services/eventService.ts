@@ -25,6 +25,28 @@ export function adicionarEventoService(nome: string, data: Date, usuario_id: num
     });
 }
 
+export function adicionarVariosEventosService(eventos: Evento[]) {  
+    // Verifica se há eventos para adicionar  
+    if (eventos.length === 0) {  
+        console.log("Nenhum evento para adicionar.");  
+        return;  
+    }  
+
+    // Cria a consulta SQL para inserção múltipla  
+    const query = `INSERT INTO eventos (nome, data, usuario_id) VALUES ${eventos.map(() => '(?, ?, ?)').join(', ')}`;  
+    
+    // Cria um array de valores para a consulta  
+    const valores = eventos.flatMap(evento => [evento.nome, evento.data, evento.criadoPor]);  
+
+    db.run(query, valores, function (erro) {  
+        if (erro) {  
+            console.error(`\nErro ao adicionar eventos: ${erro}`);  
+        } else {  
+            console.log(`\n${this.changes} eventos adicionados com sucesso!`);  
+        }  
+    });  
+}
+
 export function listarTodosEventosService() {
     const query = `SELECT * FROM eventos`;
     return new Promise((resolve, reject) => {
