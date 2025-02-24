@@ -44,3 +44,14 @@ export function deletarUsuarioService(id: number) {
         else console.log(`\nUsuário com id ${id} deletado com sucesso!`);
     });
 }
+
+export function atualizarUsuarioService(id: number, nome: string, email: string, senha: string) {  
+    const query = `UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?`;  
+    db.run(query, [nome, email, senha, id], function (erro) {  
+        if (erro) {  
+            console.error(`\nErro ao atualizar usuário: ${erro}`);  
+        } else {  
+            console.log(`\nUsuário com id ${id} atualizado com sucesso!`);  
+        }  
+    });  
+}

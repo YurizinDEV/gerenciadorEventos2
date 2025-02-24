@@ -80,3 +80,4 @@ export function atualizarEventoService(id: number, nome: string, data: Date, usu
         }  
     });  
 }  
+

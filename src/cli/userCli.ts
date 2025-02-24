@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { inserirUsuarioController, listarTodosUsuariosController, listarUsuarioPorIdController, deletarUsuarioController } from "../controllers/userController";
+import { inserirUsuarioController, listarTodosUsuariosController, listarUsuarioPorIdController, deletarUsuarioController, atualizarUsuarioController } from "../controllers/userController";
 import { logUserAction } from "./logCli";
 import { menuPrincipal } from "./menuCli";
 //import { getCurrentUser } from "../utils/";
@@ -82,6 +82,7 @@ export async function gerenciarUsuarios(userId: number) {
                 'Inserir Usuário',  
                 'Listar Todos os Usuários',  
                 'Listar Usuário por ID',  
+                'Atualizar Usuário',   
                 'Deletar Usuário',  
                 'Voltar'  
             ],  
@@ -100,6 +101,9 @@ export async function gerenciarUsuarios(userId: number) {
             break;  
         case 'Deletar Usuário':  
             await deletarUsuario(userId);  
+            break;  
+        case 'Atualizar Usuário':
+            await atualizarUsuario(userId);  
             break;  
         case 'Voltar':  
             menuPrincipal(userId); 
@@ -147,3 +151,30 @@ async function deletarUsuario(userId: number) {
     console.log('Usuário deletado com sucesso!');  
     await gerenciarUsuarios(userId);  
 }
+
+async function atualizarUsuario(userId: number) {  
+    const usuarioData = await inquirer.prompt([  
+        { type: 'input', name: 'id', message: 'Digite o ID do usuário a ser atualizado:' },  
+        { type: 'input', name: 'nome', message: 'Novo Nome:' },  
+        { type: 'input', name: 'email', message: 'Novo Email:' },  
+        { type: 'input', name: 'senha', message: 'Nova Senha:' },  
+    ]);  
+
+    const usuarioId = Number(usuarioData.id);  
+
+    if (isNaN(usuarioId) || usuarioId <= 0) {  
+        console.error("ID do Usuário inválido. Por favor, informe um número positivo.");  
+        return;  
+    }  
+
+
+    await atualizarUsuarioController(usuarioId, {  
+        nome: usuarioData.nome,  
+        email: usuarioData.email,  
+        senha: usuarioData.senha  
+    });  
+
+    await logUserAction(`Usuário com ID ${usuarioData.id} atualizado com sucesso.`, userId);  
+    console.log('Usuário atualizado com sucesso!');  
+    await gerenciarUsuarios(userId);  
+}  
