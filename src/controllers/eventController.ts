@@ -4,9 +4,10 @@ import {
     adicionarEventoService,
     listarTodosEventosService,
     listarEventoPorIdService,
-    deletarEventoService
+    deletarEventoService,
+    atualizarEventoService
 } from "../services/eventService";
-import { eventoSchema, idSchema, deletarEventoSchema } from "../validations/eventValidation";
+import { eventoSchema, idSchema } from "../validations/eventValidation";
 
 export function adicionarEventoController(eventoData: unknown) {
     try {
@@ -41,3 +42,20 @@ export function deletarEventoController(idData: unknown) {
         throw error;
     }
 }
+
+import { z } from "zod";  
+
+export function atualizarEventoController(idData: unknown, eventoData: unknown) {  
+    try {  
+        const id = idSchema.parse(idData);
+
+        const eventoDataValidado = eventoSchema.parse(eventoData);
+
+        const { nome, data, usuario_id } = eventoDataValidado;  
+
+        return atualizarEventoService(id, nome, new Date(data.toString()), usuario_id);  
+    } catch (error: any) {  
+        console.error("Validação do evento falhou:", error.errors || error);  
+        throw error;  
+    }  
+}  

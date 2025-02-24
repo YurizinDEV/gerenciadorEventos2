@@ -69,3 +69,14 @@ export function deletarEventoService(id: number) {
         }
     });
 }
+
+export function atualizarEventoService(id: number, nome: string, data: Date, usuario_id: number) {  
+    const query = `UPDATE eventos SET nome = ?, data = ?, usuario_id = ? WHERE id = ?`;  
+    db.run(query, [nome, data, usuario_id, id], function (erro) {  
+        if (erro) {  
+            console.error(`\nErro ao atualizar evento: ${erro}`);  
+        } else {  
+            console.log(`\nEvento com id ${id} atualizado com sucesso!`);  
+        }  
+    });  
+}  
