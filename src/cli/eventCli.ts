@@ -1,3 +1,5 @@
+//eventCli
+
 import inquirer from "inquirer";
 import {
     adicionarEventoController,

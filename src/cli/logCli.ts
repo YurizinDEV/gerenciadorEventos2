@@ -1,4 +1,6 @@
-//logCli.ts  
+//logCli
+
+
 import { createUserLog } from '../log/userLog';  
 import { createEventLog } from '../log/eventLog';  
 

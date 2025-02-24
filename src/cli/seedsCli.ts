@@ -1,4 +1,5 @@
-// seeds.cli.ts  
+// seedsCli
+
 import inquirer from 'inquirer';
 import { seedEvents } from '../seeds/eventsSeeds'; 
 import { seedUsers } from '../seeds/userSeeds';
@@ -32,32 +33,3 @@ export async function menuSeeds(userId: number) {
     }  
     await menuSeeds(userId);
 }  
-
-
-   /*export async function menuSeeds2() {
-        const { action } = await inquirer.prompt([
-            {
-                type: 'list',
-                name: 'action',
-                message: 'Selecione uma das opções:',
-                choices: [
-                    { name: '1 - Adicionar 10 usuários (Seed)', value: 'userSeed'  },
-                    { name: '2 - Adicionar 10 eventos (Seed)' , value: 'eventSeed' },
-                    { name: '3 - Voltar ao menu principal'    , value: 'back'      }
-                ]
-            }
-        ])
-    
-        switch (action) {
-            case 'userSeed':
-                await seedUsers()
-                break
-            case 'eventSeed':
-                await seedEvents()
-                break
-            case 'back':
-                return
-        }
-    
-        await menuSeeds2()
-    }*/
